@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Jia ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    color: white;
+    overflow-x: hidden;
+    background: radial-gradient(circle at bottom, #0b0c2c, #1a1a3d);
+    position: relative;
+    word-wrap: break-word;
+}
+
+.container {
+    padding: 40px 20px;
+    z-index: 2;
+    position: relative;
+}
+
+input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: none;
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    background: white;
+    color: #ff4d6d;
+    transition: 0.3s;
+    width: 80%;
+    max-width: 300px;
+}
+
+button:hover {
+    background: #ffe6ea;
+}
+
+#mainContent {
+    display: none;
+}
+
+.heart {
+    font-size: 60px;
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.gallery img {
+    width: 90%;
+    max-width: 300px;
+    height: auto;
+    margin: 10px auto;
+    border-radius: 20px;
+    border: 4px solid white;
+    display: block;
+}
+
+#loveMessage, #apologyMessage {
+    display: block;
+    font-size: 22px;
+    margin-top: 20px;
+    min-height: 60px;
+    padding: 0 10px;
+}
+
+#forgiveSection {
+    margin-top: 30px;
+}
+
+#yesMessage {
+    display: none;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.floating-heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 8s linear infinite;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity:0.7; }
+    100% { transform: translateY(-100vh); opacity:0; }
+}
+
+.petal {
+    position: fixed;
+    top: -10px;
+    font-size: 24px;
+    animation: fall 10s linear infinite;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity:0.7; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity:0; }
+}
+
+.star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite alternate;
+    z-index: 0;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+.typewriter {
+    display: inline-block;
+    white-space: normal;
+    overflow: hidden;
+    border-right: 2px solid white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div class="container" id="loginBox">
+    <h1>🔐 Private Message for Jia ❤️</h1>
+    <p>Enter the secret password:</p>
+    <input type="password" id="passwordInput" placeholder="Enter Password">
+    <br>
+    <button onclick="checkPassword()">Unlock ❤️</button>
+    <p id="error" style="color:yellow;"></p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="container">
+    <h1>I'm Truly Sorry, Jia ❤️</h1>
+    <div class="heart">💖</div>
+
+    <p id="apologyMessage" class="typewriter"></p>
+
+    <button onclick="showLove()">Click Here My Love 💌</button>
+
+    <p id="loveMessage" class="typewriter"></p>
+
+    <!-- Forgive Section -->
+    <div id="forgiveSection">
+        <h2>Will You Forgive Me? 💍</h2>
+        <button onclick="forgiven()">YES ❤️</button>
+        <button id="noBtn" onmouseover="moveButton()">NO 😜</button>
+        <p id="yesMessage">Yaaay! I promise to make you the happiest wife ever ❤️🥰</p>
+    </div>
+
+    <!-- Photo -->
+    <h2>Our Beautiful Memory 📸</h2>
+    <div class="gallery">
+        <img src="photo1.jpg">
+    </div>
+</div>
+
+<script>
+const apologyText = "My beautiful Jia, I know my behavior over the last few days was not right. I never want to hurt you or make you feel unimportant. You mean everything to me.Janaw jo kuch hua apko pata hi hai kesa hua apka bhi kasoor hai andr sab mera nahi hai 🙂.han lekin mera zayada ho ga itna over react or itna aga nahi jana chahiya tha lekin ab jo kal hua usa aj to kharab nahi kr skta na 🤌🥹.i love you soo much begum jii 💋💗.";
+const loveText = "Jia, I love you more than anything in this world. You are my happiness, my peace, my forever. I choose you today, tomorrow, and always.jia ap meri zindagi ka sab sa acha hissa ho and you know i cant lose you wo bhi ya choti moti larai ki waja sa to nahi so bat ko bhol jao or ab wapis sa sahi ho jao meri jan 🤌💋💗👑 ❤️💍";
+
+function typeWriter(element, text, speed=50) {
+    let i = 0;
+    element.innerHTML = "";
+    let interval = setInterval(() => {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+        } else clearInterval(interval);
+    }, speed);
+}
+
+function checkPassword() {
+    var password = "jia123"; 
+    var input = document.getElementById("passwordInput").value;
+    if (input === password) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        typeWriter(document.getElementById("apologyMessage"), apologyText, 40);
+    } else {
+        document.getElementById("error").innerText = "Wrong password ❤️ Try again.";
+    }
+}
+
+function showLove() {
+    typeWriter(document.getElementById("loveMessage"), loveText, 40);
+}
+
+function forgiven() {
+    document.getElementById("yesMessage").style.display = "block";
+}
+
+function moveButton() {
+    var btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.left = Math.random() * 80 + "%";
+    btn.style.top = Math.random() * 80 + "%";
+}
+
+// Floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("floating-heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+}, 500);
+
+// Falling petals
+setInterval(() => {
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+    petal.innerHTML = "🌹";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.fontSize = (Math.random() * 24 + 12) + "px";
+    document.body.appendChild(petal);
+    setTimeout(() => petal.remove(), 10000);
+}, 700);
+
+// Stars
+for(let i = 0; i < 80; i++){
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.width = star.style.height = (Math.random() * 2 + 1) + "px";
+    document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>
